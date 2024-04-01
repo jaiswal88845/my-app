@@ -1,11 +1,11 @@
-package com.jlj.myapp.model;
+package com.jlj.myapp.model.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class Person {
+public class PersonDTO {
 
     private String name;
     private int age;
