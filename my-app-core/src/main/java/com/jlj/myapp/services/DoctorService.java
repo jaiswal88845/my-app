@@ -18,11 +18,11 @@ public class DoctorService {
     @Autowired
     DoctorConverter doctorConverter;
 
-    public List<DoctorDTO> getAllPersons(){
+    public List<DoctorDTO> getAllDoctors(){
        return doctorConverter.convertToDtoList(doctorRepository.findAll());
     }
 
-    public Doctor addPerson(DoctorDTO doctorDTO){
+    public Doctor addDoctor(DoctorDTO doctorDTO){
         Doctor doctor = doctorConverter.convertToEntity(doctorDTO);
         return doctorRepository.save(doctor);
     }

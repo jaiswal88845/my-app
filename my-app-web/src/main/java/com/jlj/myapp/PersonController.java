@@ -21,12 +21,12 @@ public class PersonController {
 	@GetMapping
 	public List<DoctorDTO> getAllDoctors() {
 
-		return doctorService.getAllPersons();
+		return doctorService.getAllDoctors();
 
 	}
 
 	@PostMapping
-	public Doctor createPerson(@RequestBody DoctorDTO doctorDTO) {
-		return doctorService.addPerson(doctorDTO);
+	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
+		return doctorService.addDoctor(doctorDTO);
 	}
 }
