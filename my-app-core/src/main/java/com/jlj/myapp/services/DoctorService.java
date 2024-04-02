@@ -3,28 +3,28 @@ package com.jlj.myapp.services;
 import com.jlj.myapp.converter.DoctorConverter;
 import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
-import com.jlj.myapp.repository.PersonRepository;
+import com.jlj.myapp.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PersonServices {
+public class DoctorService {
 
     @Autowired
-    PersonRepository personRepository;
+    DoctorRepository doctorRepository;
 
     @Autowired
     DoctorConverter doctorConverter;
 
     public List<DoctorDTO> getAllPersons(){
-       return doctorConverter.convertToDtoList(personRepository.findAll());
+       return doctorConverter.convertToDtoList(doctorRepository.findAll());
     }
 
     public Doctor addPerson(DoctorDTO doctorDTO){
         Doctor doctor = doctorConverter.convertToEntity(doctorDTO);
-        return personRepository.save(doctor);
+        return doctorRepository.save(doctor);
     }
 
 

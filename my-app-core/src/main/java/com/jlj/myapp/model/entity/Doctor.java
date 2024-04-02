@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document(collection = "person")
+@Document(collection = "doctor")
 public class Doctor {
 
     @Id

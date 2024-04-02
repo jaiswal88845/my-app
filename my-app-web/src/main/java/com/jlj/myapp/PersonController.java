@@ -2,7 +2,7 @@ package com.jlj.myapp;
 
 import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
-import com.jlj.myapp.services.PersonServices;
+import com.jlj.myapp.services.DoctorService;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
 	@Autowired
-	PersonServices personServices;
+	DoctorService doctorService;
 
 	@GetMapping
 	public List<DoctorDTO> getAllDoctors() {
 
-		return personServices.getAllPersons();
+		return doctorService.getAllPersons();
 
 	}
 
 	@PostMapping
 	public Doctor createPerson(@RequestBody DoctorDTO doctorDTO) {
-		return personServices.addPerson(doctorDTO);
+		return doctorService.addPerson(doctorDTO);
 	}
 }
