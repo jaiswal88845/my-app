@@ -1,7 +1,7 @@
 package com.jlj.myapp;
 
-import com.jlj.myapp.model.dto.PersonDTO;
-import com.jlj.myapp.model.entity.Person;
+import com.jlj.myapp.model.dto.DoctorDTO;
+import com.jlj.myapp.model.entity.Doctor;
 import com.jlj.myapp.services.PersonServices;
 
 import java.util.List;
@@ -19,14 +19,14 @@ public class PersonController {
 	PersonServices personServices;
 
 	@GetMapping
-	public List<PersonDTO> getAllDoctors() {
+	public List<DoctorDTO> getAllDoctors() {
 
 		return personServices.getAllPersons();
 
 	}
 
 	@PostMapping
-	public Person createPerson(@RequestBody PersonDTO personDTO) {
-		return personServices.addPerson(personDTO);
+	public Doctor createPerson(@RequestBody DoctorDTO doctorDTO) {
+		return personServices.addPerson(doctorDTO);
 	}
 }
