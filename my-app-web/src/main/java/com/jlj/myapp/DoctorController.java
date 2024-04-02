@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PersonController {
+public class DoctorController {
 
 	@Autowired
 	DoctorService doctorService;
@@ -25,8 +25,9 @@ public class PersonController {
 
 	}
 
-	@PostMapping
+	@PostMapping("/createDoctor")
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
+		System.out.println("uuuuuuuuuuuuuuuuuuuuuu");
 		return doctorService.addDoctor(doctorDTO);
 	}
 }

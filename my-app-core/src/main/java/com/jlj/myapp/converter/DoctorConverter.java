@@ -18,13 +18,13 @@ public class DoctorConverter {
     ModelMapper modelMapper;
 
     public Doctor convertToEntity(DoctorDTO doctorDTO) throws ParseException {
-        Doctor post = modelMapper.map(doctorDTO, Doctor.class);
-        return post;
+        Doctor doctor = modelMapper.map(doctorDTO, Doctor.class);
+        return doctor;
     }
     
     public DoctorDTO convertToDto(Doctor doctor) {
-        DoctorDTO perdonDto = modelMapper.map(doctor, DoctorDTO.class);
-        return perdonDto;
+        DoctorDTO doctorDTO = modelMapper.map(doctor, DoctorDTO.class);
+        return doctorDTO;
     }
     
     
