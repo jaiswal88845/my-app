@@ -1,4 +1,4 @@
-package com.jlj.myapp;
+package com.jlj.myapp.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

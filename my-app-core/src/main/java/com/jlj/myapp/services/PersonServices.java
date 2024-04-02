@@ -1,12 +1,10 @@
 package com.jlj.myapp.services;
 
-import com.jlj.myapp.converter.TestConverter;
+import com.jlj.myapp.converter.DoctorConverter;
 import com.jlj.myapp.model.dto.PersonDTO;
 import com.jlj.myapp.model.entity.Person;
 import com.jlj.myapp.repository.PersonRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,23 +16,19 @@ public class PersonServices {
     PersonRepository personRepository;
 
     @Autowired
-    ModelMapper modelMapper;
+    DoctorConverter doctorConverter;
 
-    public List<Person> getAllPersons(){
-       return personRepository.findAll();
+    public List<PersonDTO> getAllPersons(){
+       return doctorConverter.convertToDtoList(personRepository.findAll());
     }
 
     public Person addPerson(PersonDTO personDTO){
-        Person person = convertToEntity(personDTO);
+        Person person = doctorConverter.convertToEntity(personDTO);
         return personRepository.save(person);
     }
 
 
-    private Person convertToEntity(PersonDTO postDto) throws ParseException {
-        Person post = modelMapper.map(postDto, Person.class);
 
-        return post;
-    }
 
 
 }
