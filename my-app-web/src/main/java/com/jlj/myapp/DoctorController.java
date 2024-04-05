@@ -27,7 +27,6 @@ public class DoctorController {
 
 	@PostMapping("/createDoctor")
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
-		System.out.println("uuuuuuuuuuuuuuuuuuuuuu");
 		return doctorService.addDoctor(doctorDTO);
 	}
 }
