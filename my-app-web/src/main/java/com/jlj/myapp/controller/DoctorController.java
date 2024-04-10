@@ -1,4 +1,4 @@
-package com.jlj.myapp;
+package com.jlj.myapp.controller;
 
 import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
