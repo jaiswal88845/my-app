@@ -29,6 +29,12 @@
             <artifactId>my-app-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.jlj.myapp.security</groupId>
+            <artifactId>my-app-security</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

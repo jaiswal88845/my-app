@@ -1,24 +1,10 @@
+HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-#target folders
-my-app-core/target/**
-my-app-web/target/**
-my-app-security/target/**
-
-my-app-security/.mvn/**
-
-### IntelliJ IDEA ###
-
-.idea/
-
-*.iws
-*.iml
-*.ipr
-
-### Eclipse ###
+### STS ###
 .apt_generated
 .classpath
 .factorypath
@@ -26,6 +12,12 @@ my-app-security/.mvn/**
 .settings
 .springBeans
 .sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
 ### NetBeans ###
 /nbproject/private/
@@ -39,6 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Mac OS ###
-.DS_Store
