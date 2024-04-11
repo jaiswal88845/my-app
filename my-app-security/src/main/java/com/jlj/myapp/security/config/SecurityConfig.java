@@ -21,15 +21,15 @@ public class SecurityConfig {
     @Autowired
     public UserDetailsServiceImpl userDetailsService;
 
- /*   @Bean
+    @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }*/
+    }
 
-    @Bean
+  /*  @Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-    }
+    }*/
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
