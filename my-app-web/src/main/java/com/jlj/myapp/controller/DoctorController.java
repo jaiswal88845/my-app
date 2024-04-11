@@ -25,7 +25,7 @@ public class DoctorController {
 		return doctorService.getAllDoctors();
 
 	}
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/createDoctor")
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return doctorService.addDoctor(doctorDTO);
