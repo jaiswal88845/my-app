@@ -1,7 +1,9 @@
 package com.jlj.myapp.controller;
 
-import com.jlj.myapp.model.entity.User;
+import com.jlj.myapp.model.dto.UserDTO;
+import com.jlj.myapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +16,14 @@ public class UserController {
     @Autowired
     public PasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserService userService;
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/createUser")
-    public User createUser(@RequestBody User userDto){
+    public UserDTO createUser(@RequestBody UserDTO userDto){
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userDto = userService.createUser(userDto);
         return userDto;
     }
 }
