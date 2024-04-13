@@ -3,8 +3,11 @@
 2. Java 17
 3. Junit Mockito
 4. Mongodb: 
-5. 
-
+5. Spring security 
+   5.1 Basic 
+   5.2 Password Encoding with Bcrypt
+   5.3 Session Management with [spring-session-data-mongodb](https://docs.spring.io/spring-session/reference/guides/boot-mongo.html)
+   
 ## ################# MongoDB atlas ##########################
 spring.data.mongodb.uri=mongodb+srv://jlj04071990:CAPITAL_G%40123@cluster0.mqit0w1.mongodb.net/
 spring.data.mongodb.database=JLJ
