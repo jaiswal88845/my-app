@@ -13,7 +13,7 @@ public class HttpSessionConfig {
 
     @Bean
     public JdkMongoSessionConverter jdkMongoSessionConverter() {
-        return new JdkMongoSessionConverter(Duration.ofMinutes(1));
+        return new JdkMongoSessionConverter(Duration.ofMinutes(30));
     }
 
 }

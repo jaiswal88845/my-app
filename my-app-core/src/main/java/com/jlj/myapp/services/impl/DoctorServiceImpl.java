@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -28,8 +29,16 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.save(doctor);
     }
 
+    @Override
+    public DoctorDTO getDoctorById(String id) {
+        Optional<Doctor> doctorOptional= doctorRepository.findById(id);
+        //TODO: if not found
+        Doctor doc=  doctorOptional
+                .map(doctor ->doctor)
+                .orElseGet(() -> new Doctor());
 
-
+      return  doctorConverter.convertToDto(doc);
+    }
 
 
 }

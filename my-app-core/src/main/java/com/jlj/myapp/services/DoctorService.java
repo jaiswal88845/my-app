@@ -10,4 +10,6 @@ public interface DoctorService {
     public List<DoctorDTO> getAllDoctors();
 
     public Doctor addDoctor(DoctorDTO doctorDTO);
+
+    public DoctorDTO getDoctorById(String id);
 }

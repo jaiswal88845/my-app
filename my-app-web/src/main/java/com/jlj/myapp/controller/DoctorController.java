@@ -9,10 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DoctorController {
@@ -24,12 +21,15 @@ public class DoctorController {
 
 	@GetMapping("/getAll")
 	public List<DoctorDTO> getAllDoctors() {
-
 		return doctorService.getAllDoctors();
+	}
 
+	@GetMapping("/doctor/{id}")
+	public DoctorDTO getAllDoctor(@PathVariable String id) {
+		return doctorService.getDoctorById(id);
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/createDoctor")
+	@PostMapping("/doctor")
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return doctorService.addDoctor(doctorDTO);
 	}
