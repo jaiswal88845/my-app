@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,14 +15,10 @@ public class DoctorController {
 
 	@Autowired
 	DoctorService doctorService;
-
-
-
 	@GetMapping("/getAll")
 	public List<DoctorDTO> getAllDoctors() {
 		return doctorService.getAllDoctors();
 	}
-
 	@GetMapping("/doctor/{id}")
 	public DoctorDTO getAllDoctor(@PathVariable String id) {
 		return doctorService.getDoctorById(id);

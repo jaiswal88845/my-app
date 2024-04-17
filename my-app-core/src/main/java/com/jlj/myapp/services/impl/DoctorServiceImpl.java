@@ -1,6 +1,8 @@
 package com.jlj.myapp.services.impl;
 
 import com.jlj.myapp.converter.DoctorConverter;
+import com.jlj.myapp.enums.ResponseCode;
+import com.jlj.myapp.exception.ResourceNotFoundException;
 import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
 import com.jlj.myapp.repository.DoctorRepository;
@@ -32,12 +34,9 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorDTO getDoctorById(String id) {
         Optional<Doctor> doctorOptional= doctorRepository.findById(id);
-        //TODO: if not found
-        Doctor doc=  doctorOptional
-                .map(doctor ->doctor)
-                .orElseGet(() -> new Doctor());
-
-      return  doctorConverter.convertToDto(doc);
+        Doctor doc =  doctorOptional
+                .orElseThrow(()->new ResourceNotFoundException(ResponseCode.DOCTOR_NOT_FOUND_WITH_ID, id));
+        return  doctorConverter.convertToDto(doc);
     }
 
 
