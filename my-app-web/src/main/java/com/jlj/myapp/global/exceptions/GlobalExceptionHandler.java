@@ -13,7 +13,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ErrorResponse(ex.getErrorCode(), ex.getMessage()));
+                .body( ErrorResponse.builder()
+                        .errorCode(ex.getErrorCode())
+                        .message(ex.getMessage())
+                        .build());
     }
 
 }
