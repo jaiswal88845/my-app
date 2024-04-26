@@ -1,25 +1,32 @@
+import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
+
 const FooterComponent = () => {
-return  <>
-        <footer className="bg-dark text-white py-4">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6">
-            <h5>About Us</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div className="col-lg-6">
-            <h5>Contact Us</h5>
-            <p>Email: example@example.com</p>
-            <p>Phone: 123-456-7890</p>
+  return (
+    <>
+      <footer className="footer mt-auto py-3 bg-dark">
+        <div className="container">
+          <div className="row justify-content-center align-items-center">
+            <div className="col-auto">
+              <span className="text-light">© 2024 Your Company</span>
+            </div>
+            <div className="col-auto">
+              <div className="social-links mt-2">
+                <a href="https://www.facebook.com" className="text-light me-3">
+                  <FaFacebook />
+                </a>
+                <a href="https://www.twitter.com" className="text-light me-3">
+                  <FaTwitter />
+                </a>
+                <a href="https://www.linkedin.com" className="text-light me-3">
+                  <FaLinkedin />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <hr className="bg-light" />
-        <div className="text-center">
-          <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  </>;
+      </footer>
+    </>
+  );
 };
 
 export default FooterComponent;
