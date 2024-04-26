@@ -12,4 +12,6 @@ public interface DoctorService {
     public Doctor addDoctor(DoctorDTO doctorDTO);
 
     public DoctorDTO getDoctorById(String id);
+
+    public void deleteDoctorById(String id);
 }

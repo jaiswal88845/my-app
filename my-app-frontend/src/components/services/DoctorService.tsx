@@ -22,3 +22,9 @@ export const getDoctorById = (id:string) => {
 export const updateDoctorById = (id:string, doctor:Doctor) => {
   return axios.put(REST_CREATE_DOCTOR_URL+'/'+id, doctor);
 };
+
+
+export const deleteDoctorById = (id:string | undefined) => {
+  return axios.delete(REST_CREATE_DOCTOR_URL+'/'+id);
+};
+

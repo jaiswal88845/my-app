@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
-import { listDoctors } from "./services/DoctorService";
+import { deleteDoctorById, listDoctors } from "./services/DoctorService";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,17 +12,29 @@ const ListDoctors = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
-    listDoctors()
-      .then((response) => {
-        setDoctors(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getAllDoctors();
   }, []);
+
+ const getAllDoctors = () => {
+    listDoctors()
+    .then((response) => {
+      setDoctors(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   const handleDoctorUpdate = (id: string | undefined) => {
     navigator(`/update-doctor/${id}`);
+  };
+
+  const handleDoctorDelete = (id: string | undefined) => {
+    console.log('id--'+id)
+    deleteDoctorById(id).then(response => {
+      console.log(response)
+      getAllDoctors();
+    }).catch(error => console.log('error while deleting-'+error));
   };
 
   const addNewDoctor = () => {
@@ -61,6 +73,12 @@ const ListDoctors = () => {
                     onClick={() => handleDoctorUpdate(doctor.id)}
                   >
                     Update
+                  </button>
+                  <button
+                    className="btn btn-danger ms-2"
+                    onClick={() => handleDoctorDelete(doctor.id)}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>

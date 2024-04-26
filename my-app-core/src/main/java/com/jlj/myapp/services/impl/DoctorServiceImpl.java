@@ -39,5 +39,10 @@ public class DoctorServiceImpl implements DoctorService {
         return  doctorConverter.convertToDto(doc);
     }
 
+    @Override
+    public void deleteDoctorById(String id) {
+         doctorRepository.deleteById(id);
+    }
+
 
 }
