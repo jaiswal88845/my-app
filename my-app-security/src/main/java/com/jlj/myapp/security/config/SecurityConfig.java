@@ -26,15 +26,18 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-  /*  @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }*/
 
-    @Bean
+
+  /*  @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated()
                 ).userDetailsService(userDetailsService).httpBasic(Customizer.withDefaults());
+        return http.build();
+    }*/
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll());
         return http.build();
     }
 
