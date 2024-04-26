@@ -21,9 +21,15 @@ const ListDoctors = () => {
       });
   }, []);
 
+  const handleDoctorUpdate = (id: string | undefined) => {
+    navigator(`/update-doctor/${id}`);
+  };
+
   const addNewDoctor = () => {
     navigator("/add-doctor");
   };
+
+
 
   return (
     <>
@@ -41,13 +47,22 @@ const ListDoctors = () => {
             <tr>
               <th>Name</th>
               <th>Age</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {doctors.map((doctor) => (
-              <tr key={`${doctor.id} + ${doctor.age}`}>
-                <th>{doctor.name}</th>
+              <tr key={doctor.id}>
+                <td>{doctor.name}</td>
                 <td>{doctor.age}</td>
+                <td>
+                  <button
+                    className="btn btn-info"
+                    onClick={() => handleDoctorUpdate(doctor.id)}
+                  >
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -25,10 +25,15 @@ public class DoctorController {
 	public DoctorDTO getAllDoctor(@PathVariable String id) {
 		return doctorService.getDoctorById(id);
 	}
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/doctor")
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return doctorService.addDoctor(doctorDTO);
 	}
 
+	@PutMapping("/doctor/{id}")
+	public Doctor updateDoctor(@PathVariable String id, @RequestBody DoctorDTO doctorDTO) {
+		doctorDTO.setId(id);
+		return doctorService.addDoctor(doctorDTO);
+	}
 }

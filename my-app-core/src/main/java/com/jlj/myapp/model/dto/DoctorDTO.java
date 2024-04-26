@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class DoctorDTO {
 
+    private String id;
     private String name;
     private int age;
 }

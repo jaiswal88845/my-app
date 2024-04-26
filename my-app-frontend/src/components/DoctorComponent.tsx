@@ -1,13 +1,18 @@
-import { ChangeEvent, useState } from "react";
-import { createDoctor } from "./services/DoctorService";
+import { ChangeEvent, useEffect, useState } from "react";
+import {
+  createDoctor,
+  getDoctorById,
+  updateDoctorById,
+} from "./services/DoctorService";
 import { Doctor } from "../interfaces/Doctor";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DoctorComponent = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const { id } = useParams();
 
   const [errors, setErrors] = useState({
     name: "",
@@ -18,9 +23,9 @@ const DoctorComponent = () => {
 
   const validateForm = () => {
     let isvalid = true;
-    const errorCopy = {... errors};
+    const errorCopy = { ...errors };
     if (name.trim()) {
-      errorCopy.name = '';
+      errorCopy.name = "";
     } else {
       errorCopy.name = "First Name is empty";
       isvalid = false;
@@ -32,14 +37,26 @@ const DoctorComponent = () => {
 
   const navigator = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitCreateOrUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
       const doctor: Doctor = { name, age };
-      createDoctor(doctor).then((response) => {
-        console.log(response.data);
-        navigator("/employees");
-      });
+
+      if (id) {
+        updateDoctorById(id, doctor)
+          .then((response) => {
+            console.log(response.data);
+            navigator("/employees");
+          })
+          .catch((error) => {
+            console.log("error while updating doctor->" + error);
+          });
+      } else {
+        createDoctor(doctor).then((response) => {
+          console.log(response.data);
+          navigator("/employees");
+        });
+      }
     }
   };
 
@@ -49,11 +66,33 @@ const DoctorComponent = () => {
     setEmail("");
     setMessage("");
   };
+
+  const pageTitle = () => {
+    if (id) {
+      return <h2 className="text-center">Update a Doctor</h2>;
+    } else {
+      return <h2 className="text-center">Create a Doctor</h2>;
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getDoctorById(id)
+        .then((response) => {
+          setName(response.data.name);
+          setAge(response.data.age);
+        })
+        .catch((error) => {
+          console.log("error while fetching employee By Id-->", error);
+        });
+    }
+  }, [id]);
+
   return (
     <>
       <div className="container">
-        <h2 className="text-center">Create a Doctor</h2>
-        <form onSubmit={handleSubmit}>
+        {pageTitle()}
+        <form onSubmit={handleSubmitCreateOrUpdate}>
           <div className="row">
             <div className="col-md-4">
               <div className="mb-3">
@@ -62,7 +101,7 @@ const DoctorComponent = () => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                  className={`form-control ${errors.name ? "is-invalid" : ""}`}
                   id="name"
                   name="name"
                   value={name}
