@@ -8,15 +8,39 @@ const DoctorComponent = () => {
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+    age,
+  });
+
+  const validateForm = () => {
+    let isvalid = true;
+    const errorCopy = {... errors};
+    if (name.trim()) {
+      errorCopy.name = '';
+    } else {
+      errorCopy.name = "First Name is empty";
+      isvalid = false;
+    }
+
+    setErrors(errorCopy);
+    return isvalid;
+  };
+
   const navigator = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const doctor :Doctor= { name, age};
-    createDoctor(doctor).then((response)=>{
-        console.log(response.data)
-        navigator('/employees')
-    })
+    if (validateForm()) {
+      const doctor: Doctor = { name, age };
+      createDoctor(doctor).then((response) => {
+        console.log(response.data);
+        navigator("/employees");
+      });
+    }
   };
 
   const handleClearForm = () => {
@@ -38,7 +62,7 @@ const DoctorComponent = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                   id="name"
                   name="name"
                   value={name}
@@ -46,6 +70,9 @@ const DoctorComponent = () => {
                     setName(event.target.value)
                   }
                 />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.name}</div>
+                )}
               </div>
             </div>
             <div className="col-md-4">

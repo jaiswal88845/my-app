@@ -45,7 +45,7 @@ const ListDoctors = () => {
           </thead>
           <tbody>
             {doctors.map((doctor) => (
-              <tr key={doctor.name}>
+              <tr key={`${doctor.id} + ${doctor.age}`}>
                 <th>{doctor.name}</th>
                 <td>{doctor.age}</td>
               </tr>
