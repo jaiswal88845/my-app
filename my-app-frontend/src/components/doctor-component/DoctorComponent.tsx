@@ -3,8 +3,8 @@ import {
   createDoctor,
   getDoctorById,
   updateDoctorById,
-} from "../services/DoctorService";
-import { Doctor } from "../interfaces/Doctor";
+} from "../../services/DoctorService";
+import { Doctor } from "../../interfaces/Doctor";
 import { useNavigate, useParams } from "react-router-dom";
 
 const DoctorComponent = () => {

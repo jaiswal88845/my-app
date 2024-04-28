@@ -1,10 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ListDoctors from "./components/ListDoctorComponent";
+import ListDoctors from "./components/doctor-component/ListDoctorComponent";
 import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DoctorComponent from "./components/DoctorComponent";
+import DoctorComponent from "./components/doctor-component/DoctorComponent";
 
 import './App.css';
 
