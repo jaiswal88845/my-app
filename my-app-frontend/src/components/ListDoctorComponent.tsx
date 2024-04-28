@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
-import { deleteDoctorById, listDoctors } from "./services/DoctorService";
+import { deleteDoctorById, listDoctors } from "../services/DoctorService";
 
 import { useNavigate } from "react-router-dom";
 

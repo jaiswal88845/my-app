@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Doctor } from "../../interfaces/Doctor";
+import { Doctor } from "../interfaces/Doctor";
 
 const REST_GET_ALL_DOCTORS_URL: string = "http://localhost:8080/my-app/getAll";
 const REST_CREATE_DOCTOR_URL: string = "http://localhost:8080/my-app/doctor";
