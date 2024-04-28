@@ -1,31 +1,46 @@
-# React + TypeScript + Vite
-axios library.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React.js Application with Vite
+This is a simple React.js application bootstrapped with Vite, a fast build tool for modern web development. It utilizes Axios for making REST API calls and Bootstrap for styling.
 
-Currently, two official plugins are available:
+# Features
+React.js: A JavaScript library for building user interfaces.
+__Vite__: A fast build tool that provides lightning-fast cold server start and instant hot module replacement (HMR).
+__Axios__: A promise-based HTTP client for making HTTP requests.
+__Bootstrap__: A popular CSS framework for building responsive and mobile-first websites.
+Getting Started
+# Prerequisites
+Before running this project, ensure you have Node.js and npm installed on your machine.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Installation
+Clone the repository:
 
-## Expanding the ESLint configuration
+git clone [<repository-url>](https://github.com/jaiswal88845/my-app)
+Navigate into the project directory: my-app-frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+# Install dependencies:
+npm install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+# Configuration
+Created a .env.local file in the root of the project.
+ reading environment variable.
+import.meta.env.VITE_BACKEND_HOST_URL
+# Running the Application
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+npm run dev
+The application will be available at http://localhost:3000.
+
+# Building for Production
+
+npm run build
+This will generate an optimized build in the dist directory.
+
+# Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
+
+# License
+This project is licensed under the MIT License.
+
+
+# APIs it is accessing: 
+ Doctor related: localhost:8080/my-app/doctor
