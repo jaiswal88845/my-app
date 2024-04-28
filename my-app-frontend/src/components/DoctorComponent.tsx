@@ -46,7 +46,7 @@ const DoctorComponent = () => {
         updateDoctorById(id, doctor)
           .then((response) => {
             console.log(response.data);
-            navigator("/employees");
+            navigator("/doctors");
           })
           .catch((error) => {
             console.log("error while updating doctor->" + error);
@@ -54,7 +54,7 @@ const DoctorComponent = () => {
       } else {
         createDoctor(doctor).then((response) => {
           console.log(response.data);
-          navigator("/employees");
+          navigator("/doctors");
         });
       }
     }

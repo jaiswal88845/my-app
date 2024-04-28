@@ -15,8 +15,8 @@ function App() {
       <BrowserRouter>
         <HeaderComponent />
         <Routes>
-          <Route path="/" element={<ListDoctors />}></Route>
-          <Route path="/employees" element={<ListDoctors />}></Route>
+         {/* <Route path="/" element={<ListDoctors />}></Route> */}
+          <Route path="/doctors" element={<ListDoctors />}></Route>
           <Route path="/add-doctor" element={<DoctorComponent />}></Route>
           <Route path="/update-doctor/:id" element={<DoctorComponent />}></Route>
 
