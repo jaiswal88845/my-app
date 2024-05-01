@@ -12,31 +12,33 @@ import org.springframework.web.bind.annotation.*;
 
 
 @CrossOrigin("*")
+@RequestMapping("/doctor")
 @RestController
 public class DoctorController {
 
 	@Autowired
 	DoctorService doctorService;
 	@GetMapping("/getAll")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public List<DoctorDTO> getAllDoctors() {
 		return doctorService.getAllDoctors();
 	}
-	@GetMapping("/doctor/{id}")
+	@GetMapping("/{id}")
 	public DoctorDTO getAllDoctor(@PathVariable String id) {
 		return doctorService.getDoctorById(id);
 	}
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/doctor")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping
 	public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
 		return doctorService.addDoctor(doctorDTO);
 	}
 
-	@PutMapping("/doctor/{id}")
+	@PutMapping("/{id}")
 	public Doctor updateDoctor(@PathVariable String id, @RequestBody DoctorDTO doctorDTO) {
 		doctorDTO.setId(id);
 		return doctorService.addDoctor(doctorDTO);
 	}
-	@DeleteMapping("/doctor/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteDoctor(@PathVariable String id) {
 		 doctorService.deleteDoctorById(id);
 	}

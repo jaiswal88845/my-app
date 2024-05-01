@@ -7,11 +7,11 @@ import org.springframework.session.data.mongo.config.annotation.web.http.EnableM
 
 import java.time.Duration;
 
-@Configuration(proxyBeanMethods = false)
-@EnableMongoHttpSession
+//@Configuration(proxyBeanMethods = false)
+//@EnableMongoHttpSession
 public class HttpSessionConfig {
 
-    @Bean
+    //@Bean
     public JdkMongoSessionConverter jdkMongoSessionConverter() {
         return new JdkMongoSessionConverter(Duration.ofMinutes(30));
     }
