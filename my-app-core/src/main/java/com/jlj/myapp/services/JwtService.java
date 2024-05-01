@@ -1,4 +1,4 @@
-package com.jlj.myapp.security.service;
+package com.jlj.myapp.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

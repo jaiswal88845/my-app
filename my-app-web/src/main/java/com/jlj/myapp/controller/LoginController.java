@@ -1,7 +1,7 @@
 package com.jlj.myapp.controller;
 
 import com.jlj.myapp.model.dto.LoginRequestDTO;
-import com.jlj.myapp.security.service.JwtService;
+import com.jlj.myapp.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

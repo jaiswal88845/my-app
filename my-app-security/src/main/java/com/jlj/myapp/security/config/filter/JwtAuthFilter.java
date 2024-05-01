@@ -1,7 +1,7 @@
 package com.jlj.myapp.security.config.filter;
 
 
-import com.jlj.myapp.security.service.JwtService;
+import com.jlj.myapp.services.JwtService;
 import com.jlj.myapp.security.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
