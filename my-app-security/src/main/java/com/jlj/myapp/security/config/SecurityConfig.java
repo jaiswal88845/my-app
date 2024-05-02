@@ -50,7 +50,8 @@ public class SecurityConfig {
                 .build();
     }
 
-/*    @Bean
+    /** TODO: AuthenticationProvider is required if you are connecting with DB. I don't know how it is working in my case*/
+/**    @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);

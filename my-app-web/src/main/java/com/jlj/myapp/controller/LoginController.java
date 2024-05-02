@@ -31,7 +31,5 @@ public class LoginController {
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
-
-
     }
 }
