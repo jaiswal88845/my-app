@@ -1,6 +1,7 @@
 package com.jlj.myapp.controller;
 
 import com.jlj.myapp.model.dto.LoginRequestDTO;
+import com.jlj.myapp.model.dto.LoginResponseDTO;
 import com.jlj.myapp.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,10 +25,10 @@ public class LoginController {
 
 
     @PostMapping("/authenticate")
-    public String authenticateAndGetToken(@RequestBody LoginRequestDTO loginRequestDTO) {
+    public LoginResponseDTO authenticateAndGetToken(@RequestBody LoginRequestDTO loginRequestDTO) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(), loginRequestDTO.getPassword()));
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(loginRequestDTO.getUsername());
+            return new LoginResponseDTO(jwtService.generateToken(loginRequestDTO.getUsername()), loginRequestDTO.getUsername());
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
