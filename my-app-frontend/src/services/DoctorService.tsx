@@ -2,7 +2,7 @@ import axios from "axios";
 import { Doctor } from "../interfaces/Doctor";
 
 const REST_GET_ALL_DOCTORS_URL: string =
-  import.meta.env.VITE_BACKEND_HOST_URL + "/getAll";
+  import.meta.env.VITE_BACKEND_HOST_URL + "/doctor/getAll";
 
 const REST_CREATE_DOCTOR_URL: string =
   import.meta.env.VITE_BACKEND_HOST_URL + "/doctor";
