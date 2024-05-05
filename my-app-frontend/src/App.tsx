@@ -1,37 +1,15 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ListDoctors from "./components/doctor-component/ListDoctorComponent";
-import HeaderComponent from "./components/fixed-component/HeaderComponent";
-import FooterComponent from "./components/fixed-component/FooterComponent";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DoctorComponent from "./components/doctor-component/DoctorComponent";
-
-import './App.css';
-import LoginPage from "./components/login-components/LoginPage";
-import SignupPage from "./components/login-components/SignUpPage";
-import LoginDashboard from "./components/login-components/LoginDashboard";
+import Authuser from "./services/AuthUser";
+import Guest from "./components/navbar-components/guest";
+import Auth from "./components/navbar-components/auth";
 
 
 function App() {
-  return (
-    <React.Fragment>
-      <BrowserRouter>
-        <HeaderComponent />
-        <Routes>
-         {/* <Route path="/" element={<ListDoctors />}></Route> */}
-          <Route path="/doctors" element={<ListDoctors />}></Route>
-          <Route path="/add-doctor" element={<DoctorComponent />}></Route>
-          <Route path="/update-doctor/:id" element={<DoctorComponent />}></Route>
-          <Route path="/login" element={<LoginPage/>} /> 
-          <Route path="/signup" element={ <SignupPage/>} /> 
-          <Route path = "/loginDashboard" element={<LoginDashboard username="username"/>}/> 
-
-
-        </Routes>
-        <FooterComponent />
-      </BrowserRouter>
-    </React.Fragment>
-  );
+  const { getToken } = Authuser();
+  if (!getToken()) {
+    return <Guest />;
+  }
+  return <Auth />;
 }
 
 export default App;

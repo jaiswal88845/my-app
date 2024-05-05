@@ -33,10 +33,11 @@ export default function Authuser() {
 
     setToken(token);
     setUsername(username);
-    navigate("/loginDashboard");
+    navigate("/dashboard");
   };
 
   const logout = () => {
+    console.log('logout called')
     sessionStorage.clear();
     navigate("/login");
   };

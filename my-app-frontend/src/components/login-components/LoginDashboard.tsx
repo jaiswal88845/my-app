@@ -1,14 +1,15 @@
 // WelcomeDashboard.js 
 import { useNavigate} from 'react-router-dom'; // Import useHistory hook 
 
-const LoginDashboard = ({ username }: { username: string }) => {
+const Dashboard = ({ username }: { username: string }) => {
 
-	const loginDashBoardNavigator = useNavigate(); 
+
+	const dashboardNavigator = useNavigate(); 
 
 	const handleLogout = () => { 
 		// Perform logout actions here (e.g., clear session, remove authentication token) 
 		// After logout, redirect to the login page 
-		loginDashBoardNavigator('/loginDashboard'); 
+		dashboardNavigator('/login'); 
 	}; 
 
 	return ( 
@@ -25,4 +26,4 @@ const LoginDashboard = ({ username }: { username: string }) => {
 	); 
 } 
 
-export default LoginDashboard; 
+export default Dashboard; 
