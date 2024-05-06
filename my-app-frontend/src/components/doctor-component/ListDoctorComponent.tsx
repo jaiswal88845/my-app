@@ -6,22 +6,28 @@ import { deleteDoctorById, listDoctors } from "../../services/DoctorService";
 import { useNavigate } from "react-router-dom";
 
 import { Doctor } from "../../interfaces/Doctor";
+import Authuser from "../../services/AuthUser";
 
 const ListDoctors = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const navigator = useNavigate();
+  const { getToken } = Authuser();
+  const jwtToken = getToken();
+
 
   useEffect(() => {
     getAllDoctors();
   }, []);
 
  const getAllDoctors = () => {
-    listDoctors()
+  console.log('trying to get all doctors', jwtToken)
+    listDoctors(jwtToken)
     .then((response) => {
+      console.log('response----------------->',response)
       setDoctors(response.data);
     })
     .catch((error) => {
-      console.log(error);
+      console.log('error-------------------->',error);
     });
   }
 

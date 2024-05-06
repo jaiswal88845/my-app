@@ -24,7 +24,11 @@ function Auth() {
                   Home
                 </Link>
               </li>
-
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/doctors">
+                  Doctors
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/dashboard">
                   Dashboard

@@ -7,8 +7,9 @@ const REST_GET_ALL_DOCTORS_URL: string =
 const REST_CREATE_DOCTOR_URL: string =
   import.meta.env.VITE_BACKEND_HOST_URL + "/doctor";
 
-export const listDoctors = () => {
-  return axios.get(REST_GET_ALL_DOCTORS_URL);
+export const listDoctors = (jwtToken: string) => {
+  const headers = { Authorization: `Bearer ${jwtToken}` };
+  return axios.get(REST_GET_ALL_DOCTORS_URL, { headers });
 };
 
 export const createDoctor = (doctor: Doctor) => {
