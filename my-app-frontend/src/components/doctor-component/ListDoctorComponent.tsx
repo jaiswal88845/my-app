@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
-import { deleteDoctorById, listDoctors } from "../../services/DoctorService";
+import { deleteDoctorById } from "../../services/DoctorService";
 
 import { useNavigate } from "react-router-dom";
 
@@ -9,45 +9,45 @@ import { Doctor } from "../../interfaces/Doctor";
 import Authuser from "../../services/AuthUser";
 
 const ListDoctors = () => {
+  const { http2 } = Authuser();
+
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const navigator = useNavigate();
-  const { getToken } = Authuser();
-  const jwtToken = getToken();
 
 
   useEffect(() => {
     getAllDoctors();
   }, []);
 
- const getAllDoctors = () => {
-  console.log('trying to get all doctors', jwtToken)
-    listDoctors(jwtToken)
-    .then((response) => {
-      console.log('response----------------->',response)
-      setDoctors(response.data);
-    })
-    .catch((error) => {
-      console.log('error-------------------->',error);
-    });
-  }
+  const getAllDoctors = () => {
+    http2
+      .get("/doctor/getAll")
+      .then((res) => {
+        console.log(res.data);
+        setDoctors(res.data)
+      })
+      .catch((error) => {
+        console.log("error-------------------->", error);
+      });
+  };
 
   const handleDoctorUpdate = (id: string | undefined) => {
     navigator(`/update-doctor/${id}`);
   };
 
   const handleDoctorDelete = (id: string | undefined) => {
-    console.log('id--'+id)
-    deleteDoctorById(id).then(response => {
-      console.log(response)
-      getAllDoctors();
-    }).catch(error => console.log('error while deleting-'+error));
+    console.log("id--" + id);
+    deleteDoctorById(id)
+      .then((response) => {
+        console.log(response);
+        getAllDoctors();
+      })
+      .catch((error) => console.log("error while deleting-" + error));
   };
 
   const addNewDoctor = () => {
     navigator("/add-doctor");
   };
-
-
 
   return (
     <>

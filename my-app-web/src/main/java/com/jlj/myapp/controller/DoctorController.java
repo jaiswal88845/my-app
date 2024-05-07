@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin("*")
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/doctor")
 @RestController
 public class DoctorController {
