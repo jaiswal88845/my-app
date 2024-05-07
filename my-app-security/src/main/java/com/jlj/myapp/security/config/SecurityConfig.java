@@ -23,6 +23,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
@@ -31,76 +33,85 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    public UserDetailsServiceImpl userDetailsService;
-    @Autowired
-    private JwtAuthFilter authFilter;
+	@Autowired
+	public UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	private JwtAuthFilter authFilter;
 
-    @Bean
-    public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public static PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/authenticate").permitAll()
-                .and()
-                .authorizeHttpRequests().requestMatchers("/doctor/**", "/user/**")
-                .authenticated().and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS.STATELESS)
-                .and()
-                //.authenticationProvider(authenticationProvider())
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.cors(cors -> cors.configurationSource(request -> {
+			CorsConfiguration configuration = new CorsConfiguration();
+			configuration.setAllowedOrigins(Arrays.asList("*"));
+			configuration.setAllowedMethods(Arrays.asList("*"));
+			configuration.setAllowedHeaders(Arrays.asList("*"));
+			return configuration;
+		    })).csrf().disable().authorizeHttpRequests().requestMatchers("/authenticate").permitAll().and()
+				.authorizeHttpRequests().requestMatchers("/doctor/**", "/user/**").authenticated().and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS.STATELESS).and()
+				// .authenticationProvider(authenticationProvider())
+				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();
+	}
 
-    /** TODO: AuthenticationProvider is required if you are connecting with DB. I don't know how it is working in my case*/
-/**    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }*/
+	/**
+	 * TODO: AuthenticationProvider is required if you are connecting with DB. I
+	 * don't know how it is working in my case
+	 */
+	/**
+	 * @Bean public AuthenticationProvider authenticationProvider(){
+	 *       DaoAuthenticationProvider authenticationProvider=new
+	 *       DaoAuthenticationProvider();
+	 *       authenticationProvider.setUserDetailsService(userDetailsService);
+	 *       authenticationProvider.setPasswordEncoder(passwordEncoder()); return
+	 *       authenticationProvider; }
+	 */
 
-@Bean
-public FilterRegistrationBean corsFilter() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    config.addAllowedOrigin("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    source.registerCorsConfiguration("/**", config);
-    FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-    bean.setOrder(0);
-    return bean;
-}
-/*@Bean
-CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-    configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-    configuration.setAllowCredentials(true);
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
-}*/
+	/*
+	 * @Bean public FilterRegistrationBean corsFilter() {
+	 * UrlBasedCorsConfigurationSource source = new
+	 * UrlBasedCorsConfigurationSource(); CorsConfiguration config = new
+	 * CorsConfiguration(); config.addAllowedOrigin("*");
+	 * config.addAllowedHeader("*"); config.addAllowedMethod("*");
+	 * source.registerCorsConfiguration("/**", config); FilterRegistrationBean bean
+	 * = new FilterRegistrationBean(new CorsFilter(source)); bean.setOrder(0);
+	 * return bean; }
+	 */
 
+	/*
+	 * @Bean public WebMvcConfigurer corsConfigurer() { return new
+	 * WebMvcConfigurer() {
+	 * 
+	 * @Override public void addCorsMappings(CorsRegistry registry) {
+	 * registry.addMapping("/doctor/**").allowedOrigins("http://localhost:8080"); }
+	 * }; }
+	 */
 
-/*    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return new CorsFilter(source);
-    }*/
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+	/*
+	 * @Bean CorsConfigurationSource corsConfigurationSource() { CorsConfiguration
+	 * configuration = new CorsConfiguration();
+	 * configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+	 * configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+	 * configuration.setAllowCredentials(true); UrlBasedCorsConfigurationSource
+	 * source = new UrlBasedCorsConfigurationSource();
+	 * source.registerCorsConfiguration("/**", configuration); return source; }
+	 */
+
+	/*
+	 * @Bean public CorsFilter corsFilter() { CorsConfiguration configuration = new
+	 * CorsConfiguration();
+	 * configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+	 * configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+	 * UrlBasedCorsConfigurationSource source = new
+	 * UrlBasedCorsConfigurationSource(); source.registerCorsConfiguration("/**",
+	 * configuration); return new CorsFilter(source); }
+	 */
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
+	}
 }

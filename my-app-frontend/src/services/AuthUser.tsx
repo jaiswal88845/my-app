@@ -53,8 +53,8 @@ export default function Authuser() {
     baseURL: "http://localhost:8080/my-app",
     headers: {
       'Content-Type': 'application/json',
-     // 'Authorization':`Bearer ${token}`
-      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYW1lc2giLCJpYXQiOjE3MTUwNDMxOTAsImV4cCI6MTcxNTA0NDk5MH0.d7n8TWklb-N2DMY5G8EpBx5Lw3jfp1TLvClLqGY46CQ",
+      'Authorization':`Bearer ${token}`
+      //"Authorization": token
   }
   });
 
