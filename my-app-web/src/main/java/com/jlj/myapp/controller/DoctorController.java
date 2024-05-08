@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
-//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+
 @RequestMapping("/doctor")
 @RestController
 public class DoctorController {
@@ -19,11 +19,12 @@ public class DoctorController {
 	@Autowired
 	DoctorService doctorService;
 	@GetMapping("/getAll")
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public List<DoctorDTO> getAllDoctors() {
 		return doctorService.getAllDoctors();
 	}
 	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public DoctorDTO getAllDoctor(@PathVariable String id) {
 		return doctorService.getDoctorById(id);
 	}
@@ -34,11 +35,13 @@ public class DoctorController {
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Doctor updateDoctor(@PathVariable String id, @RequestBody DoctorDTO doctorDTO) {
 		doctorDTO.setId(id);
 		return doctorService.addDoctor(doctorDTO);
 	}
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteDoctor(@PathVariable String id) {
 		 doctorService.deleteDoctorById(id);
 	}

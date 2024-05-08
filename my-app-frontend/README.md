@@ -35,8 +35,7 @@ The application will be available at http://localhost:3000.
 npm run build
 This will generate an optimized build in the dist directory.
 
-# Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
+
 
 # License
 This project is licensed under the MIT License.
@@ -44,3 +43,8 @@ This project is licensed under the MIT License.
 
 # APIs it is accessing: 
  Doctor related: localhost:8080/my-app/doctor
+
+
+ # ######React SECURITY #####################
+ Security Link https://www.youtube.com/watch?v=9tlute6epkk&t=2505s
+ 

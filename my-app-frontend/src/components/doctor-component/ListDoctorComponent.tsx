@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
-import { deleteDoctorById } from "../../services/DoctorService";
 
 import { useNavigate } from "react-router-dom";
 
@@ -36,8 +35,7 @@ const ListDoctors = () => {
   };
 
   const handleDoctorDelete = (id: string | undefined) => {
-    console.log("id--" + id);
-    deleteDoctorById(id)
+    http2.delete(`/doctor/${id}`)
       .then((response) => {
         console.log(response);
         getAllDoctors();
