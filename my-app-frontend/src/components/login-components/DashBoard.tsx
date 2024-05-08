@@ -1,4 +1,4 @@
-import Authuser from "../../services/AuthUser";
+import Authuser from "../../services/AuthUserService";
 
 const Dashboard = () => {
 

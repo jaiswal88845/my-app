@@ -1,5 +1,5 @@
 import { Doctor } from "../interfaces/Doctor";
-import Authuser from "./AuthUser";
+import Authuser from "./AuthUserService";
 
 export default function DoctorService() {
   const { http2 } = Authuser();

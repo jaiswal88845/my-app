@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Route, Routes } from "react-router-dom";
-import Authuser from "../../services/AuthUser";
+import Authuser from "../../services/AuthUserService";
 import ListDoctors from "../doctor-component/ListDoctorComponent";
 import DoctorComponent from "../doctor-component/DoctorComponent";
 import Dashboard from "../login-components/DashBoard";
