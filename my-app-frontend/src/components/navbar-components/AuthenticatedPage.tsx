@@ -27,7 +27,11 @@ function Auth() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/doctors">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/doctors"
+                >
                   Doctors
                 </Link>
               </li>
@@ -48,7 +52,7 @@ function Auth() {
       </nav>
       <div className="container">
         <Routes>
-          <Route path = "/dashboard" element={<Dashboard/>}/> 
+          <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/doctors" element={<ListDoctors />}></Route>
           <Route path="/add-doctor" element={<DoctorComponent />}></Route>
@@ -56,11 +60,10 @@ function Auth() {
             path="/update-doctor/:id"
             element={<DoctorComponent />}
           ></Route>
-          <Route path ='/signUp' element={<SignupPage/>}></Route>
+          <Route path="/signUp" element={<SignupPage />}></Route>
         </Routes>
       </div>
-      <FooterComponent/>
-
+      <FooterComponent />
     </>
   );
 }
