@@ -7,7 +7,7 @@ const FooterComponent = () => {
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-auto">
-              <span className="text-light">© 2024 Your Company</span>
+              <span className="text-light">© 2024 My App</span>
             </div>
             <div className="col-auto">
               <div className="social-links mt-2">

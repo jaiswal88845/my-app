@@ -3,7 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import Authuser from "../../services/AuthUser";
 import ListDoctors from "../doctor-component/ListDoctorComponent";
 import DoctorComponent from "../doctor-component/DoctorComponent";
-import Dashboard from "../login-components/LoginDashboard";
+import Dashboard from "../login-components/DashBoard";
 
 function Auth() {
   const { token, logout } = Authuser();

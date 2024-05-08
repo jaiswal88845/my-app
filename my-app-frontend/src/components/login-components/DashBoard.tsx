@@ -1,4 +1,3 @@
-// WelcomeDashboard.js 
 import { useNavigate} from 'react-router-dom'; // Import useHistory hook 
 
 const Dashboard = ({ username }: { username: string }) => {
