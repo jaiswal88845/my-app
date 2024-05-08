@@ -47,7 +47,7 @@ function Auth() {
       </nav>
       <div className="container">
         <Routes>
-          <Route path = "/dashboard" element={<Dashboard username="username"/>}/> 
+          <Route path = "/dashboard" element={<Dashboard/>}/> 
 
           <Route path="/doctors" element={<ListDoctors />}></Route>
           <Route path="/add-doctor" element={<DoctorComponent />}></Route>
