@@ -2,12 +2,10 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 import { Doctor } from "../../interfaces/Doctor";
 import { useNavigate, useParams } from "react-router-dom";
-import Authuser from "../../services/AuthUser";
 import DoctorService from "../../services/DoctorService";
 
 const DoctorComponent = () => {
-  const { http2 } = Authuser();
-  const {getOneDoctor} = DoctorService();
+  const {getOneDoctor, updateDoctor, createDoctor} = DoctorService();
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
@@ -43,7 +41,7 @@ const DoctorComponent = () => {
       const doctor: Doctor = { name, age };
 
       if (id) {
-        http2.put(`/doctor/${id}`, doctor)
+        updateDoctor(id, doctor)
           .then((response) => {
             console.log(response.data);
             navigator("/doctors");
@@ -52,7 +50,7 @@ const DoctorComponent = () => {
             console.log("error while updating doctor->" + error);
           });
       } else {
-        http2.post( '/doctor', doctor).then((response) => {
+        createDoctor(  doctor).then((response) => {
           console.log(response.data);
           navigator("/doctors");
         });
