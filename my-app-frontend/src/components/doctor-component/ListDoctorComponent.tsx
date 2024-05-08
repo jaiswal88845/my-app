@@ -1,32 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-
-
 import { useNavigate } from "react-router-dom";
-
 import { Doctor } from "../../interfaces/Doctor";
-import Authuser from "../../services/AuthUser";
+import DoctorService from "../../services/DoctorService";
 
 const ListDoctors = () => {
-  const { http2 } = Authuser();
+  const { listDoctors, deleteDoctor } = DoctorService();
 
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const navigator = useNavigate();
-
 
   useEffect(() => {
     getAllDoctors();
   }, []);
 
   const getAllDoctors = () => {
-    http2
-      .get("/doctor/getAll")
+    listDoctors()
       .then((res) => {
         console.log(res.data);
-        setDoctors(res.data)
+        setDoctors(res.data);
       })
       .catch((error) => {
-        console.log("error-------------------->", error);
+        console.log("error-get all doctors------------------->", error);
       });
   };
 
@@ -35,7 +30,7 @@ const ListDoctors = () => {
   };
 
   const handleDoctorDelete = (id: string | undefined) => {
-    http2.delete(`/doctor/${id}`)
+    deleteDoctor(id)
       .then((response) => {
         console.log(response);
         getAllDoctors();
