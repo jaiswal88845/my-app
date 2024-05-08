@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Authuser() {
+  const MY_APP_BACKEND_ROOT_URL: string =
+  import.meta.env.VITE_BACKEND_HOST_URL ;
+  
   const navigate = useNavigate();
 
   const getToken = () => {
@@ -43,14 +46,14 @@ export default function Authuser() {
   };
 
   const http = axios.create({
-    baseURL: "http://localhost:8080/my-app",
+    baseURL: MY_APP_BACKEND_ROOT_URL,
     headers: {
       "Content-Type": "application/json",
     },
   });
 
   const http2 = axios.create({
-    baseURL: "http://localhost:8080/my-app",
+    baseURL: MY_APP_BACKEND_ROOT_URL,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
