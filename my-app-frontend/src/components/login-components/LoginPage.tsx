@@ -1,19 +1,25 @@
 import { useState } from "react";
 import Authuser from "../../services/AuthUser";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { http, setToken } = Authuser();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigator = useNavigate();
 
   const submitForm = () => {
     http
       .post("/authenticate", { username: email, password: password })
       .then((res) => {
-        setToken( res.data.token, res.data.username);
+        setToken(res.data.token, res.data.username);
         console.log(res.data);
       });
     console.log(email, password);
+  };
+
+  const handleSignUp = () => {
+    navigator("/signUp");
   };
 
   return (
@@ -38,13 +44,23 @@ export default function Login() {
           />
         </div>
 
-        <button
-          type="button"
-          className="btn btn-default mt-4 bg-primary"
-          onClick={submitForm}
-        >
-          Login
-        </button>
+        <div >
+          <button
+            type="button"
+            className="btn btn-default mr-2 bg-primary"
+            onClick={submitForm}
+          >
+            Login
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-default btn-secondary "
+            onClick={handleSignUp}
+          >
+            Sign Up
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -5,6 +5,7 @@ import ListDoctors from "../doctor-component/ListDoctorComponent";
 import DoctorComponent from "../doctor-component/DoctorComponent";
 import Dashboard from "../login-components/DashBoard";
 import FooterComponent from "../fixed-component/FooterComponent";
+import SignupPage from "../login-components/SignUpPage";
 
 function Auth() {
   const { token, logout } = Authuser();
@@ -55,6 +56,7 @@ function Auth() {
             path="/update-doctor/:id"
             element={<DoctorComponent />}
           ></Route>
+          <Route path ='/signUp' element={<SignupPage/>}></Route>
         </Routes>
       </div>
       <FooterComponent/>
