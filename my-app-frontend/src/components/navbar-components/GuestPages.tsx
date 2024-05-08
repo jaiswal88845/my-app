@@ -5,7 +5,6 @@ import SignupPage from "../login-components/SignUpPage";
 import FooterComponent from "../fixed-component/FooterComponent";
 
 function Guest() {
-
   return (
     <>
       <nav className="navbar navbar-expand-lg  bg-primary">
@@ -17,7 +16,7 @@ function Guest() {
                   Home
                 </Link>
               </li>
-             
+
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
@@ -27,15 +26,14 @@ function Guest() {
           </div>
         </div>
       </nav>
-      
+
       <div className="container">
         <Routes>
-        <Route path="/login" element={<LoginPage/>} /> 
-          <Route path="/signup" element={ <SignupPage/>} /> 
-
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </div>
-      <FooterComponent/>
+      <FooterComponent />
     </>
   );
 }

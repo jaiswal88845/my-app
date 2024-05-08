@@ -53,14 +53,10 @@ function Auth() {
       <div className="container">
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
-
-          <Route path="/doctors" element={<ListDoctors />}></Route>
-          <Route path="/add-doctor" element={<DoctorComponent />}></Route>
-          <Route
-            path="/update-doctor/:id"
-            element={<DoctorComponent />}
-          ></Route>
-          <Route path="/signUp" element={<SignupPage />}></Route>
+          <Route path="/signUp" element={<SignupPage />} />
+          <Route path="/doctors" element={<ListDoctors />} />
+          <Route path="/add-doctor" element={<DoctorComponent />} />
+          <Route path="/update-doctor/:id" element={<DoctorComponent />} />
         </Routes>
       </div>
       <FooterComponent />
