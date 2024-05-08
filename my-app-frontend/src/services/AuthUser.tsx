@@ -10,7 +10,7 @@ export default function Authuser() {
     if (tokenString != null) {
       const userToken = JSON.parse(tokenString);
       return userToken;
-    }else{
+    } else {
       //TODO: return some error
     }
   };
@@ -37,7 +37,7 @@ export default function Authuser() {
   };
 
   const logout = () => {
-    console.log('logout called')
+    console.log("logout called");
     sessionStorage.clear();
     navigate("/login");
   };
@@ -52,13 +52,10 @@ export default function Authuser() {
   const http2 = axios.create({
     baseURL: "http://localhost:8080/my-app",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization':`Bearer ${token}`
-      //"Authorization": token
-  }
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
-
-  
 
   return {
     setToken: saveToken,

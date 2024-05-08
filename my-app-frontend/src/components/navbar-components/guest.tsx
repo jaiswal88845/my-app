@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Route, Routes } from "react-router-dom";
 import LoginPage from "../login-components/LoginPage";
 import SignupPage from "../login-components/SignUpPage";
+import FooterComponent from "../fixed-component/FooterComponent";
 
 function Guest() {
 
@@ -26,6 +27,7 @@ function Guest() {
           </div>
         </div>
       </nav>
+      
       <div className="container">
         <Routes>
         <Route path="/login" element={<LoginPage/>} /> 
@@ -33,6 +35,7 @@ function Guest() {
 
         </Routes>
       </div>
+      <FooterComponent/>
     </>
   );
 }

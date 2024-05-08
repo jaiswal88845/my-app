@@ -4,6 +4,7 @@ import Authuser from "../../services/AuthUser";
 import ListDoctors from "../doctor-component/ListDoctorComponent";
 import DoctorComponent from "../doctor-component/DoctorComponent";
 import Dashboard from "../login-components/DashBoard";
+import FooterComponent from "../fixed-component/FooterComponent";
 
 function Auth() {
   const { token, logout } = Authuser();
@@ -56,6 +57,8 @@ function Auth() {
           ></Route>
         </Routes>
       </div>
+      <FooterComponent/>
+
     </>
   );
 }
