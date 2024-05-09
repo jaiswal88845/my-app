@@ -40,7 +40,6 @@ function Auth() {
                   Dashboard
                 </Link>
               </li>
-
               <li className="nav-item">
                 <span role="button" className="nav-link" onClick={logoutUser}>
                   Logout

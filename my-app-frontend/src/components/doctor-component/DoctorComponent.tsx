@@ -1,45 +1,26 @@
 import { ChangeEvent, useEffect, useState } from "react";
-
-import { Doctor } from "../../interfaces/Doctor";
+import { Doctor, DoctorErrors } from "../../interfaces/Doctor";
 import { useNavigate, useParams } from "react-router-dom";
 import DoctorService from "../../services/DoctorService";
-
+import ValidateDoctor from "../validate-components/ValidateDoctors";
 const DoctorComponent = () => {
-  const {getOneDoctor, updateDoctor, createDoctor} = DoctorService();
+  const { getOneDoctor, updateDoctor, createDoctor } = DoctorService();
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const { id } = useParams();
-
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-    age,
-  });
-
-  const validateForm = () => {
-    let isvalid = true;
-    const errorCopy = { ...errors };
-    if (name.trim()) {
-      errorCopy.name = "";
-    } else {
-      errorCopy.name = "First Name is empty";
-      isvalid = false;
-    }
-
-    setErrors(errorCopy);
-    return isvalid;
-  };
-
+  const { validateDoctorSubmit } = ValidateDoctor();
   const navigator = useNavigate();
+
+  const [errors, setErrors] = useState<DoctorErrors>({});
 
   const handleSubmitCreateOrUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateForm()) {
-      const doctor: Doctor = { name, age };
-
+    const doctor: Doctor = { name, email, age };
+    const validationErrors = validateDoctorSubmit(doctor);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length === 0) {
       if (id) {
         updateDoctor(id, doctor)
           .then((response) => {
@@ -50,7 +31,7 @@ const DoctorComponent = () => {
             console.log("error while updating doctor->" + error);
           });
       } else {
-        createDoctor(  doctor).then((response) => {
+        createDoctor(doctor).then((response) => {
           console.log(response.data);
           navigator("/doctors");
         });
@@ -73,8 +54,16 @@ const DoctorComponent = () => {
     }
   };
 
+  const handleButtonName = () => {
+    if (id) {
+      return "Update";
+    } else {
+      return "Create";
+    }
+  };
+
   useEffect(() => {
-    console.log('id-', id)
+    console.log("id-", id);
     if (id) {
       getOneDoctor(id)
         .then((response) => {
@@ -101,8 +90,6 @@ const DoctorComponent = () => {
                 <input
                   type="text"
                   className={`form-control ${errors.name ? "is-invalid" : ""}`}
-                  id="name"
-                  name="name"
                   value={name}
                   onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     setName(event.target.value)
@@ -120,14 +107,15 @@ const DoctorComponent = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
-                  id="email"
-                  name="email"
+                  className={`form-control ${errors.email ? "is-invalid" : ""}`}
                   value={email}
                   onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     setEmail(event.target.value)
                   }
                 />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
               </div>
             </div>
             <div className="col-md-4">
@@ -138,13 +126,14 @@ const DoctorComponent = () => {
                 <input
                   type="number"
                   className="form-control"
-                  id="age"
-                  name="age"
                   value={age}
                   onChange={(event: ChangeEvent<HTMLInputElement>) =>
                     setAge(parseInt(event.target.value))
                   }
                 />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.age}</div>
+                )}
               </div>
             </div>
           </div>
@@ -154,8 +143,6 @@ const DoctorComponent = () => {
             </label>
             <textarea
               className="form-control"
-              id="message"
-              name="message"
               rows={3}
               value={message}
               onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
@@ -164,7 +151,7 @@ const DoctorComponent = () => {
             ></textarea>
           </div>
           <button type="submit" className="btn btn-primary fw-bold">
-            Create
+            {handleButtonName()}
           </button>
           <button
             type="button"
