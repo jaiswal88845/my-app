@@ -69,6 +69,7 @@ const DoctorComponent = () => {
         .then((response) => {
           setName(response.data.name);
           setAge(response.data.age);
+          setEmail(response.data.email);
         })
         .catch((error) => {
           console.log("error while fetching employee By Id-->", error);

@@ -57,6 +57,7 @@ const ListDoctors = () => {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Email</th>
               <th>Age</th>
               <th>Actions</th>
             </tr>
@@ -65,6 +66,7 @@ const ListDoctors = () => {
             {doctors.map((doctor) => (
               <tr key={doctor.id}>
                 <td>{doctor.name}</td>
+                <td>{doctor.email}</td>
                 <td>{doctor.age}</td>
                 <td>
                   <button
