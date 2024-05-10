@@ -2,7 +2,7 @@ import { useState } from "react";
 import Authuser from "../../services/AuthUserService";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function UserLogin() {
   const { http, setToken } = Authuser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +39,7 @@ export default function Login() {
           <input
             type="password"
             className="form-control"
+            autoComplete="on"
             id="pwd"
             onChange={(e) => setPassword(e.target.value)}
           />

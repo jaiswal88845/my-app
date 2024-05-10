@@ -4,7 +4,7 @@ import { MDBContainer, MDBInput } from "mdb-react-ui-kit";
 import { User } from "../../interfaces/User";
 import UserService from "../../services/UserService";
 
-function SignupPage() {
+function UserRegistration() {
   const { createUser } = UserService();
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
@@ -82,6 +82,7 @@ function SignupPage() {
               id="password"
               type="password"
               value={password}
+              autoComplete="on"
               onChange={(e) => setPassword(e.target.value)}
             />
             <MDBInput
@@ -89,6 +90,7 @@ function SignupPage() {
               placeholder="Confirm Password"
               id="confirmPassword"
               type="password"
+              autoComplete="on"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
@@ -129,4 +131,4 @@ function SignupPage() {
     );
   }
 
-export default SignupPage;
+export default UserRegistration;

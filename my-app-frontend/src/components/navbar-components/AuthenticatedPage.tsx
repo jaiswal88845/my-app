@@ -5,7 +5,7 @@ import ListDoctors from "../doctor-component/ListDoctorComponent";
 import DoctorComponent from "../doctor-component/DoctorComponent";
 import Dashboard from "../login-components/DashBoard";
 import FooterComponent from "../fixed-component/FooterComponent";
-import SignupPage from "../login-components/SignUpPage";
+import SignupPage from "../login-components/UserRegistration";
 
 function Auth() {
   const { token, logout } = Authuser();

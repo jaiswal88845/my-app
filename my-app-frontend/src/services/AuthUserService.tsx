@@ -13,7 +13,7 @@ export default function Authuser() {
       const userToken = JSON.parse(tokenString);
       return userToken;
     } else {
-      console.error("token is not found in session storate");
+      console.log("token is not found in session storate");
     }
   };
 
@@ -23,7 +23,7 @@ export default function Authuser() {
       const username = JSON.parse(userString);
       return username;
     } else {
-      console.error("username is not found in session storate");
+      console.log("username is not found in session storate");
     }
   };
   const [token, setToken] = useState(getToken());
