@@ -1,6 +1,6 @@
 import { Doctor, DoctorErrors } from "../../interfaces/Doctor";
 
-
+//these functions are similar to hooks
 export default function ValidateDoctor() {
 
     const validateDoctorSubmit = (doctor : Doctor):DoctorErrors =>   {

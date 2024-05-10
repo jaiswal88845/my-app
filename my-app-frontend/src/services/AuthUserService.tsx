@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Authuser() {
-  const MY_APP_BACKEND_ROOT_URL: string =
-  import.meta.env.VITE_BACKEND_HOST_URL ;
-  
+  const MY_APP_BACKEND_ROOT_URL: string = import.meta.env.VITE_BACKEND_HOST_URL;
+
   const navigate = useNavigate();
 
   const getToken = () => {
@@ -14,7 +13,7 @@ export default function Authuser() {
       const userToken = JSON.parse(tokenString);
       return userToken;
     } else {
-      //TODO: return some error
+      console.error("token is not found in session storate");
     }
   };
 
@@ -24,7 +23,7 @@ export default function Authuser() {
       const username = JSON.parse(userString);
       return username;
     } else {
-      //TODO: return some error
+      console.error("username is not found in session storate");
     }
   };
   const [token, setToken] = useState(getToken());
