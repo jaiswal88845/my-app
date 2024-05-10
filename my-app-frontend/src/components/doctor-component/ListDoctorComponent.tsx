@@ -12,12 +12,12 @@ const ListDoctors = () => {
 
   useEffect(() => {
     getAllDoctors();
-  });
+  },[]);
 
   const getAllDoctors = () => {
     listDoctors()
       .then((res) => {
-        console.log(res.data);
+        console.log('doctors response ',res.data);
         setDoctors(res.data);
       })
       .catch((error) => {

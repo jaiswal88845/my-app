@@ -20,7 +20,7 @@ public class UserController {
     public UserService userService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/createUser")
+    @PostMapping
     public UserDTO createUser(@RequestBody UserDTO userDto){
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userDto = userService.createUser(userDto);

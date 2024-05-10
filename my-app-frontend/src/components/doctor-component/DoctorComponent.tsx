@@ -75,7 +75,7 @@ const DoctorComponent = () => {
           console.log("error while fetching employee By Id-->", error);
         });
     }
-  });
+  },[]);
 
   return (
     <>
