@@ -12,7 +12,7 @@ const ListDoctors = () => {
 
   useEffect(() => {
     getAllDoctors();
-  }, []);
+  });
 
   const getAllDoctors = () => {
     listDoctors()
