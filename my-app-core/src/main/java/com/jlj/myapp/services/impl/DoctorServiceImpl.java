@@ -8,6 +8,9 @@ import com.jlj.myapp.model.entity.Doctor;
 import com.jlj.myapp.repository.DoctorRepository;
 import com.jlj.myapp.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +26,11 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorConverter doctorConverter;
 
     public List<DoctorDTO> getAllDoctors(){
-       return doctorConverter.convertToDtoList(doctorRepository.findAll());
+        Pageable firstPageWithTwoElements = PageRequest.of(0, 400);
+
+        List<Doctor> doctorPage = doctorRepository.findAll(firstPageWithTwoElements).stream().toList();
+
+        return doctorConverter.convertToDtoList(doctorPage);
     }
 
     public Doctor addDoctor(DoctorDTO doctorDTO){

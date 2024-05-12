@@ -8,11 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Data
-@Document(collection = "doctor")
-public class Doctor extends BaseEntity {
-    private String name;
-    private String email;
-    private int age;
 
+
+public class BaseEntity {
+    @Id
+    private String id;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private  LocalDateTime updatedAt;
 }
