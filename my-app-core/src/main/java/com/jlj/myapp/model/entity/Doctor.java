@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 @Data
 @Document(collection = "doctor")
 public class Doctor extends BaseEntity {
+
+    @Id
+    private String id;
     private String name;
     private String email;
     private int age;
