@@ -25,8 +25,8 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorConverter doctorConverter;
 
-    public List<DoctorDTO> getAllDoctors(){
-        Pageable firstPageWithTwoElements = PageRequest.of(0, 400);
+    public List<DoctorDTO> getAllDoctors(Integer currentPage, Integer doctorsPerPage){
+        Pageable firstPageWithTwoElements = PageRequest.of(currentPage, doctorsPerPage);
 
         List<Doctor> doctorPage = doctorRepository.findAll(firstPageWithTwoElements).stream().toList();
 

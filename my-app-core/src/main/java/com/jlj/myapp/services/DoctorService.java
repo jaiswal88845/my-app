@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DoctorService {
 
-    public List<DoctorDTO> getAllDoctors();
+    public List<DoctorDTO> getAllDoctors(Integer currentPage, Integer doctorsPerPage);
 
     public Doctor addDoctor(DoctorDTO doctorDTO);
 

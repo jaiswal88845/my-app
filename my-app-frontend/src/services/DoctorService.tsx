@@ -7,8 +7,8 @@ export default function DoctorService() {
   const MY_APP_BACKEND_URL_DOCTOR: string =
     import.meta.env.VITE_BACKEND_HOST_URL + "/doctor";
 
-  const listDoctors = () => {
-    return http2.get(MY_APP_BACKEND_URL_DOCTOR + '/getAll');
+  const listDoctors = (currentPage : number, doctorsPerPage:number) => {
+    return http2.get(`${MY_APP_BACKEND_URL_DOCTOR}/getAll?currentPage=${currentPage}&doctorsPerPage=${doctorsPerPage}`);
   };
 
   const createOneDoctor = (doctor: Doctor) => {

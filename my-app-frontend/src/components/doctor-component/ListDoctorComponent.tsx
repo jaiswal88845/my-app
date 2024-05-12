@@ -14,18 +14,15 @@ const ListDoctors = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
-    getAllDoctors();
+    getAllDoctors(currentPage-1);
   }, [currentPage]); // Fetch doctors whenever the currentPage changes
 
-  const getAllDoctors = () => {
-    const startIndex = (currentPage - 1) * doctorsPerPage;
-    const endIndex = startIndex + doctorsPerPage;
-    listDoctors()
+  const getAllDoctors = (page: number) => {
+    listDoctors(page, doctorsPerPage)
       .then((res) => {
         console.log('doctors response ', res.data);
-        setTotalPages(Math.ceil(res.data.length / doctorsPerPage));
-
-        setDoctors(res.data.slice(startIndex, endIndex));
+        setDoctors(res.data.doctorDTOList);
+        setTotalPages(Math.ceil(res.data.numberOfElements / doctorsPerPage))
       })
       .catch((error) => {
         console.log("error-get all doctors------------------->", error);
@@ -40,7 +37,7 @@ const ListDoctors = () => {
     deleteDoctor(id)
       .then((response) => {
         console.log(response);
-        getAllDoctors();
+        getAllDoctors(currentPage-1); // Reload current page of doctors after deletion
       })
       .catch((error) => console.log("error while deleting-" + error));
   };
@@ -49,8 +46,12 @@ const ListDoctors = () => {
     navigator("/add-doctor");
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
-
+  // Generate array of page numbers for pagination buttons
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <>
@@ -99,16 +100,16 @@ const ListDoctors = () => {
         {/* Pagination */}
         <nav aria-label="Page navigation">
           <ul className="pagination justify-content-center">
-            {Array.from({ length: totalPages }).map((_, index) => (
+            {pageNumbers.map((number) => (
               <li
-                key={index}
-                className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+                key={number}
+                className={`page-item ${currentPage === number ? "active" : ""}`}
               >
                 <button
                   className="page-link"
-                  onClick={() => setCurrentPage(index + 1)}
+                  onClick={() => handlePageChange(number)}
                 >
-                  {index + 1}
+                  {number}
                 </button>
               </li>
             ))}

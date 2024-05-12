@@ -2,6 +2,7 @@ package com.jlj.myapp.controller;
 
 import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
+import com.jlj.myapp.model.wrappers.DoctorsResponse;
 import com.jlj.myapp.services.DoctorService;
 
 import java.util.List;
@@ -20,8 +21,10 @@ public class DoctorController {
 	DoctorService doctorService;
 	@GetMapping("/getAll")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-	public List<DoctorDTO> getAllDoctors() {
-		return doctorService.getAllDoctors();
+	public DoctorsResponse getAllDoctors(@RequestParam Integer currentPage, @RequestParam Integer doctorsPerPage) {
+		System.out.println("currentPage-->"+currentPage+"--doctorsPerPage--"+doctorsPerPage);
+		return DoctorsResponse.builder().doctorDTOList(doctorService.getAllDoctors(currentPage,doctorsPerPage)).numberOfElements(17).build();
+		//return doctorService.getAllDoctors(currentPage,doctorsPerPage);
 	}
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
