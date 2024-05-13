@@ -14,4 +14,6 @@ public interface DoctorService {
     public DoctorDTO getDoctorById(String id);
 
     public void deleteDoctorById(String id);
+
+    public long getTotalNumberOfDoctors() ;
 }

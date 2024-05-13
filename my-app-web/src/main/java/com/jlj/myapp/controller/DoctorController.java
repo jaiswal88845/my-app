@@ -22,8 +22,9 @@ public class DoctorController {
 	@GetMapping("/getAll")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public DoctorsResponse getAllDoctors(@RequestParam Integer currentPage, @RequestParam Integer doctorsPerPage) {
-		System.out.println("currentPage-->"+currentPage+"--doctorsPerPage--"+doctorsPerPage);
-		return DoctorsResponse.builder().doctorDTOList(doctorService.getAllDoctors(currentPage,doctorsPerPage)).numberOfElements(17).build();
+		long totalNumberOfDoctors= doctorService.getTotalNumberOfDoctors() ;
+
+		return DoctorsResponse.builder().doctorDTOList(doctorService.getAllDoctors(currentPage,doctorsPerPage)).numberOfElements(totalNumberOfDoctors).build();
 		//return doctorService.getAllDoctors(currentPage,doctorsPerPage);
 	}
 	@GetMapping("/{id}")

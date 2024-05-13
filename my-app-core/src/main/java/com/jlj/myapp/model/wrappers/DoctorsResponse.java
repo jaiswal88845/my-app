@@ -10,5 +10,5 @@ import java.util.List;
 @Builder
 public class DoctorsResponse {
     private List<DoctorDTO> doctorDTOList;
-    private Integer numberOfElements;
+    private long numberOfElements;
 }

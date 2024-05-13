@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorConverter doctorConverter;
 
     public List<DoctorDTO> getAllDoctors(Integer currentPage, Integer doctorsPerPage){
-        Pageable firstPageWithTwoElements = PageRequest.of(currentPage, doctorsPerPage);
+        Pageable firstPageWithTwoElements = PageRequest.of(currentPage, doctorsPerPage, Sort.by(Sort.Direction.DESC,"createdAt"));
 
         List<Doctor> doctorPage = doctorRepository.findAll(firstPageWithTwoElements).stream().toList();
 
@@ -51,5 +52,7 @@ public class DoctorServiceImpl implements DoctorService {
          doctorRepository.deleteById(id);
     }
 
-
+    public long getTotalNumberOfDoctors() {
+        return doctorRepository.count();
+    }
 }
