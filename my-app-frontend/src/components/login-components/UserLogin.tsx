@@ -15,7 +15,7 @@ export default function UserLogin() {
         setToken(res.data.token, res.data.username);
         console.log(res.data);
       });
-    console.log(email, password);
+    console.log('logging User',email);
   };
 
   const handleSignUp = () => {

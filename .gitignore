@@ -9,6 +9,7 @@ my-app-web/target/**
 my-app-security/target/**
 my-app-frontend/node_modules/**
 my-app-frontend/build/**
+logs/**
 
 
 my-app-security/.mvn/**
