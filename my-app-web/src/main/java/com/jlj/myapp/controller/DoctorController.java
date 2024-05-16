@@ -7,6 +7,8 @@ import com.jlj.myapp.services.DoctorService;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +19,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class DoctorController {
 
+	Logger logger = LoggerFactory.getLogger(DoctorController.class);
 	@Autowired
 	DoctorService doctorService;
 	@GetMapping("/getAll")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public DoctorsResponse getAllDoctors(@RequestParam Integer currentPage, @RequestParam Integer doctorsPerPage) {
 		long totalNumberOfDoctors= doctorService.getTotalNumberOfDoctors() ;
-
+		logger.info("fetching all doctors");
 		return DoctorsResponse.builder().doctorDTOList(doctorService.getAllDoctors(currentPage,doctorsPerPage)).numberOfElements(totalNumberOfDoctors).build();
-		//return doctorService.getAllDoctors(currentPage,doctorsPerPage);
 	}
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")

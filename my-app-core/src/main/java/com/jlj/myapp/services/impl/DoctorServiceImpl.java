@@ -7,6 +7,7 @@ import com.jlj.myapp.model.dto.DoctorDTO;
 import com.jlj.myapp.model.entity.Doctor;
 import com.jlj.myapp.repository.DoctorRepository;
 import com.jlj.myapp.services.DoctorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
@@ -27,6 +29,7 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorConverter doctorConverter;
 
     public List<DoctorDTO> getAllDoctors(Integer currentPage, Integer doctorsPerPage){
+        log.info("fetching all doctors");
         Pageable firstPageWithTwoElements = PageRequest.of(currentPage, doctorsPerPage, Sort.by(Sort.Direction.DESC,"createdAt"));
 
         List<Doctor> doctorPage = doctorRepository.findAll(firstPageWithTwoElements).stream().toList();
