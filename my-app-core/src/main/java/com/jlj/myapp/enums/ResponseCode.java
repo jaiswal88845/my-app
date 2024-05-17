@@ -10,7 +10,9 @@ public enum ResponseCode {
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
     //Series 1XXX for doctor
-    DOCTOR_NOT_FOUND_WITH_ID(1000, "Doctor not found with id %s");
+    DOCTOR_NOT_FOUND_WITH_ID(1000, "Doctor not found with id %s"),
+    USER_ALREADY_EXIST(2000, "User with id %s already exist");
+
 
     private final int code;
     private final String defaultMessage;

@@ -4,13 +4,12 @@ import com.jlj.myapp.enums.ResponseCode;
 import lombok.Data;
 
 @Data
-public class ResourceNotFoundException extends RuntimeException {
-
+public class UsernameAlreadyExistsException extends RuntimeException {
     private int errorCode;
 
     private String message;
 
-    public ResourceNotFoundException(ResponseCode responseCode, Object... args) {
+    public UsernameAlreadyExistsException(ResponseCode responseCode, Object... args) {
         this.errorCode = responseCode.getCode();
         this.message = formatMessage(responseCode, args);
     }
@@ -21,5 +20,4 @@ public class ResourceNotFoundException extends RuntimeException {
         String defaultMessage = responseCode.getDefaultMessage();
         return args != null ? String.format(defaultMessage, args) : defaultMessage;
     }
-
 }
