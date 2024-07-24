@@ -12,6 +12,9 @@
 spring.data.mongodb.uri=mongodb+srv://jlj04071990:CAPITAL_G%40123@cluster0.mqit0w1.mongodb.net/
 spring.data.mongodb.database=JLJ
 
+## LOGGING ###############
+logback.xml
+
 
 ## ################# #Project CICD1 Flow ####################
 
